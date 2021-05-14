@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+    <!--配置-->
+    <properties resource="database.properties"/>
+
+    <!--要求MyBatis将所推送的SQL语句细节显示出来-->
+    <settings>
+        <setting name="logImpl" value="STDOUT_LOGGING"/>
+    </settings>
+
+    <!--别名-->
+    <typeAliases>
+        <package name="com.zwl.entity"/>
+    </typeAliases>
+
+    <!--数据库信息-->
+    <environments default="yx2102">
+        <environment id="yx2102">
+
+            <!--访问数据库时候，事务的管理由JDBC负责管理-->
+            <transactionManager type="jdbc"/>
+
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc_driver}"/>
+                <property name="url" value="${jdbc_url}"/>
+                <property name="username" value="${jdbc_userName}"/>
+                <property name="password" value="${jdbc_passWord}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--帮助SQlSession对象定位SQL映射文件位置-->
+    <mappers>
+        <mapper resource="com/zwl/dao/DeptDao.xml"></mapper>
+    </mappers>
+</configuration>
